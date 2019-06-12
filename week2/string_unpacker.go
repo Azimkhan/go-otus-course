@@ -22,16 +22,18 @@ func UnpackString(s string) (string, error) {
 	var nextChar rune = -1
 	var prevChar rune = -1
 	multiplier := 0
-	//escapeNext := false
+	escapeNext := false
 
+	// пишем итоговую строку в Builder
 	var sb strings.Builder
-	for i := 0; i < len(s); i++ {
-		ch := rune(s[i])
-		if nextChar >= 0 {
-			prevChar = nextChar
-			nextChar = -1
-		}
-		if n, ok := numbers[ch]; ok {
+
+	for _, ch := range []rune(s) {
+		if escapeNext {
+			nextChar = ch
+			escapeNext = false
+		} else if ch == '\\' {
+			escapeNext = true
+		} else if n, ok := numbers[ch]; ok {
 			if multiplier < 1 && n < 1 {
 				return "", errors.New("multiplier must be greater than 0")
 			}
@@ -49,14 +51,18 @@ func UnpackString(s string) (string, error) {
 			writeToBuilder(prevChar, multiplier, &sb)
 			multiplier = 0
 		}
+		if nextChar >= 0 {
+			prevChar = nextChar
+			nextChar = -1
+		}
 	}
-	if nextChar >= 0 {
-		writeToBuilder(nextChar, multiplier, &sb)
-
+	if prevChar >= 0 {
+		writeToBuilder(prevChar, multiplier, &sb)
 	}
 	return sb.String(), nil
 }
 
+// вспомогательная функция для многократной записи символа в буфер
 func writeToBuilder(c rune, mul int, builder *strings.Builder) {
 	if mul == 0 {
 		mul = 1

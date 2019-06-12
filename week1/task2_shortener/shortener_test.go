@@ -1,17 +1,17 @@
 package task2_shortener
 
 import (
-	"testing"
+	"fmt"
 	"github.com/stretchr/testify/assert"
 	"sync"
-	"fmt"
+	"testing"
 )
 
-func TestShorten(t *testing.T)  {
+func TestShorten(t *testing.T) {
 	shortener := NewStandardShortener()
 	urls := []string{"https://google.com", "https://yandex.ru", "https://mail.ru"}
 	wg := sync.WaitGroup{}
-	for _,url := range urls {
+	for _, url := range urls {
 		wg.Add(1)
 		go func(originalUrl string, g *sync.WaitGroup) {
 			defer g.Done()

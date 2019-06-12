@@ -65,9 +65,13 @@ func UnpackString(s string) (string, error) {
 // вспомогательная функция для многократной записи символа в буфер
 func writeToBuilder(c rune, mul int, builder *strings.Builder) {
 	if mul == 0 {
-		mul = 1
-	}
-	for j := 0; j < mul; j++ {
 		builder.WriteRune(c)
+		return
 	}
+
+	runes := make([]rune, mul)
+	for j := 0; j < mul; j++ {
+		runes[j] = c
+	}
+	builder.WriteString(string(runes))
 }

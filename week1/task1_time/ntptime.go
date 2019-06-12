@@ -1,13 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"github.com/beevik/ntp"
 	"log"
-	"fmt"
 )
 
 func main() {
-	t,err := ntp.Time("time.google.com")
+	t, err := ntp.Time("time.google.com")
 
 	if err != nil {
 		log.Println("Error gettin time...")
@@ -16,5 +16,3 @@ func main() {
 
 	fmt.Println("Time: ", t)
 }
-
-

@@ -69,9 +69,7 @@ func writeToBuilder(c rune, mul int, builder *strings.Builder) {
 		return
 	}
 
-	runes := make([]rune, mul)
 	for j := 0; j < mul; j++ {
-		runes[j] = c
+		builder.WriteRune(c)
 	}
-	builder.WriteString(string(runes))
 }

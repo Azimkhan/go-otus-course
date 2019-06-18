@@ -11,22 +11,20 @@ type WordFrequency struct {
 }
 
 func Top10WordsByFrequency(text string) []WordFrequency {
-	out := map[string]int{}
+	wordMap := map[string]int{}
 	// создаем словарь слово -> частота
 	words := strings.Split(strings.ToLower(text), " ")
 	for _, word := range words {
 		if len([]rune(word)) > 1 {
-			out[word] = out[word] + 1
+			wordMap[word] = wordMap[word] + 1
 		}
 	}
 
 	// преорбразуем словарь в массив структур
-	numWords := len(out)
+	numWords := len(wordMap)
 	pairs := make([]WordFrequency, numWords)
-	i := 0
-	for w, c := range out {
-		pairs[i] = WordFrequency{w, c}
-		i++
+	for w, c := range wordMap {
+		pairs = append(pairs, WordFrequency{w, c})
 	}
 
 	// сортируем массив по частоте

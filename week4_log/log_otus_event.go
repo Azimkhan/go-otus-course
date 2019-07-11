@@ -17,6 +17,7 @@ func setNowFunc(now func() time.Time)  {
 }
 
 func init (){
+	// set nowFunc to time.Now by default
 	setNowFunc(nil)
 }
 

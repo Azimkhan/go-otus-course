@@ -13,6 +13,7 @@ var fakeNow = func() time.Time {
 
 func TestLogOtusEventSubmitted(t *testing.T) {
 	setNowFunc(fakeNow)
+
 	event := &HwSubmitted{
 		Id:      3456,
 		Code:    "unknown",

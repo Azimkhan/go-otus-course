@@ -16,6 +16,10 @@ func setNowFunc(now func() time.Time)  {
 	nowFunc = now
 }
 
+func init (){
+	setNowFunc(nil)
+}
+
 type HwAccepted struct {
 	Id    int
 	Grade int

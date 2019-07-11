@@ -1,4 +1,4 @@
-package week3
+package week3_dll
 
 import (
 	"gotest.tools/assert"

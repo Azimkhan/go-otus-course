@@ -1,8 +1,8 @@
-package week3
+package week3_find_max
 
 import (
-	"testing"
 	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
 func TestSortInts(t *testing.T) {
@@ -13,11 +13,9 @@ func TestSortInts(t *testing.T) {
 		return data[i].(int) - data[j].(int)
 	}
 
-	Sort(ints, compareInts)
+	result := FindMax(ints, compareInts)
 
-	shouldBe := make([]interface{}, 0, 5)
-	shouldBe = append(shouldBe, 10, 8, 3, 2, 1)
-	assert.Equal(t, shouldBe, ints)
+	assert.Equal(t, 10, result)
 }
 
 func TestSortStrings(t *testing.T) {
@@ -34,7 +32,7 @@ func TestSortStrings(t *testing.T) {
 
 		r1 := []rune(s1)
 		r2 := []rune(s2)
-		for i:= 0; i < len(r1); i++{
+		for i := 0; i < len(r1); i++ {
 			diff := r1[i] - r2[i]
 			if diff != 0 {
 				if diff > 0 {
@@ -46,9 +44,7 @@ func TestSortStrings(t *testing.T) {
 		return 0
 	}
 
-	Sort(data, compareStrings)
+	result := FindMax(data, compareStrings)
 
-	shouldBe := make([]interface{}, 0, 4)
-	shouldBe = append(shouldBe, "Samanta", "John", "Bob", "Tom")
-	assert.Equal(t, shouldBe, data)
+	assert.Equal(t, "Samanta", result)
 }

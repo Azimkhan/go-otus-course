@@ -1,4 +1,4 @@
-package week3
+package week3_dll
 
 type List struct {
 	first *Item

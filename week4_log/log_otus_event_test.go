@@ -7,6 +7,7 @@ import (
 	"time"
 )
 
+// set nowFunc to fixed date - 2019-01-01 00:00:00 UTC
 var fakeNow = func() time.Time {
 	return time.Date(2019,1,1,0,0,0,0, time.UTC)
 }
